@@ -68,7 +68,10 @@
                                                         <div class="product-price " itemprop="offers" itemscope=""
                                                              itemtype="https://schema.org/Offer">
                                                             <div
-                                                                class="current-price "> السعر قبل الخصم : {{$firstorsecondProductDetails->price}} </div>
+                                                                class="current-price"> السعر قبل الخصم
+                                                                : <span
+                                                                    style="font-size:20px ;font-weight:bold">{{$firstorsecondProductDetails->price}}</span>
+                                                            </div>
                                                         </div>
                                                     </div>
 
@@ -76,33 +79,28 @@
                                                 <br>
                                             </div>
                                             <form method="post"
-                                                  action="{{route('first-product.buy') ? route('first-product.buy'): route('sconde-product.buy') }}">
+                                                  action="{{route('first-product.buy',$firstorsecondProductDetails->id) }}">
                                                 @csrf
                                                 <div class="form-group">
                                                     <div class="product-quantity">
                                                         <label class="font-weight-bold">ادخل الكمية</label>
                                                         <br>
-                                                        <input type="number" name="quantity"
-                                                               class="input-group" required>
+                                                        <input type="number" name="quantity" class="input-group"
+                                                               required>
                                                     </div>
-
                                                 </div>
                                                 <button class="btn btn-success" type="submit"> شراء</button>
 
                                             </form>
-                                            @php
-                                                $product = \App\products::where('number','first')->orwhere('number','second')->first();
-                                            @endphp
-                                            @if($product&& $product->count()>0)
-                                                <div class="product-prices">
-                                                    <div class="product-price " itemprop="offers" itemscope=""
-                                                         itemtype="https://schema.org/Offer">
-                                                        <div
-                                                            class="current-price ">السعر بعد الشراء : {{$product->total_price}} </div>
+                                            <div class="product-prices">
+                                                <div class="product-price " itemprop="offers" itemscope=""
+                                                     itemtype="https://schema.org/Offer">
+                                                    <div
+                                                        class="current-price" style="font-size:20px ;font-weight:bold">السعر بعد الشراء
+                                                        : {{$firstorsecondProductDetails->total_price}}
                                                     </div>
                                                 </div>
-                                            @endif
-
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -122,4 +120,3 @@
 
 @section('scripts')
 @stop
-

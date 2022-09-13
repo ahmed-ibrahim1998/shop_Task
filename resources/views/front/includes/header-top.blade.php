@@ -18,7 +18,7 @@
                 <div class="col-lg-6 col-md-6 d-flex justify-content-end align-items-center header-top-right">
                     <div class="register-out">
                         <i class="zmdi zmdi-account"></i>
-                        @guest()
+                        @guest('site')
                             <a class="register" href="{{route('register_user')}}"
                                data-link-action="display-register-form">
                                 Register
@@ -28,7 +28,7 @@
                                title="Log in to your customer account">Sign
                                 in</a>
                         @endguest
-                        @auth()
+                        @auth('site')
                             <a href="{{ route('logout') }}"
                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 Logout

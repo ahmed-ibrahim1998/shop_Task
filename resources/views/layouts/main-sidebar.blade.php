@@ -59,7 +59,7 @@
                     </ul>
                 </li>
             @endcan
-            @can('الاعدادات')
+            @can('المنتجات')
                 <li class="side-item side-item-category">المنتجات</li>
                 <li class="slide">
                     <a class="side-menu__item" data-toggle="slide" href="{{ url('/' . $page='#') }}">
@@ -90,7 +90,7 @@
                         </svg>
                         <span class="side-menu__label">المنتجات</span><i class="angle fe fe-chevron-down"></i></a>
                     <ul class="slide-menu">
-                        @can('الاقسام')
+                        @can('المنتجات')
                             <li><a class="slide-item" href="{{ url('/' . ($page = 'products')) }}">المنتجات</a></li>
                         @endcan
                     </ul>

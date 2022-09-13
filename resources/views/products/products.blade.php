@@ -110,12 +110,12 @@
                                         {{--                                        @can('حذف قسم')--}}
                                         <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
                                            data-id="{{ $product->id }}" data-product_name="{{ $product->product_name }}"
-                                           data-toggle="modal" href="#modaldemo9" title="حذف"><i
+                                           data-toggle="modal" href="#modaldemo9"
+                                           title="حذف"><i
                                                 class="las la-trash"></i></a>
                                         {{--                                        @endcan--}}
                                     </td>
                                 </tr>
-
                             @endforeach
                             </tbody>
                         </table>
@@ -235,22 +235,21 @@
                             {{ csrf_field() }}
                             <div class="modal-body">
                                 <p>هل انت متاكد من عملية الحذف ؟</p><br>
-                                <input type="hidden" name="id" id="id" value="">
+                                <input type="hidden" name="id" id="id" value="id">
                                 <input class="form-control" name="product_name" id="product_name" type="text" readonly>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">الغاء</button>
                                 <button type="submit" class="btn btn-danger">تاكيد</button>
                             </div>
+                        </form>
                     </div>
-                    </form>
                 </div>
-            </div>
 
+            </div>
+            <!-- row closed -->
         </div>
-        <!-- row closed -->
-    </div>
-    <!-- Container closed -->
+            <!-- Container closed -->
     </div>
     <!-- main-content closed -->
 @endsection
@@ -302,6 +301,7 @@
             var modal = $(this)
             modal.find('.modal-body #id').val(id);
             modal.find('.modal-body #product_name').val(product_name);
+
         })
     </script>
 @endsection

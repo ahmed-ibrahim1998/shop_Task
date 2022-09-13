@@ -31,74 +31,54 @@ class HomeController extends Controller
         }
     }
 
-    public function First_product_buy(Request $request)
+    public function First_product_buy(Request $request, $id)
     {
-        $product = products::where(['number' => 'first'])->first();
+        $Product = products::findorfail($id);
         $data = [];
-        if (isset($product)) {
-
+        if (isset($Product) && $Product->number == 'first') {
             if ($request->quantity == 1 || $request->quantity == 4) {
                 $data = [
-                    'total_price' => $product->price
+                    'total_price' => $Product->price
                 ];
             } elseif ($request->quantity == 5 || $request->quantity == 9) {
                 $data = [
-                    'total_price' => $product->price - 2
+                    'total_price' => $Product->price - 2
                 ];
             } elseif ($request->quantity == 10) {
                 $data = [
-                    'total_price' => $product->price - 3
+                    'total_price' => $Product->price - 3
                 ];
 
             }
-        } else {
-            return "There Is No Product You Can Add From Dashboard";
-        }
-
-        $product->update([
-            'total_price' => $data['total_price'],
-        ]);
-
-        return back()->with('تم الخصم بنجاح');
-
-    }
-
-    public function Second_product_buy(Request $request)
-    {
-        $product = products::where(['number' => 'second'])->first();
-        $data = [];
-        if (isset($product)) {
-
+        } elseif (isset($Product) && $Product->number == 'second') {
             if ($request->quantity == 1 || $request->quantity == 4) {
                 $data = [
-                    'total_price' => $product->price
+                    'total_price' => $Product->price
                 ];
             } elseif ($request->quantity == 5 || $request->quantity == 9) {
                 $data = [
-                    'total_price' => $product->price - 5
+                    'total_price' => $Product->price - 5
                 ];
             } elseif ($request->quantity == 10 || $request->quantity == 19) {
                 $data = [
-                    'total_price' => $product->price - 7
+                    'total_price' => $Product->price - 7
                 ];
 
-            }elseif ($request->quantity == 20) {
+            } elseif ($request->quantity == 20) {
                 $data = [
-                    'total_price' => $product->price - 10
+                    'total_price' => $Product->price - 10
                 ];
 
             }
-        } else {
+        } else
             return "There Is No Product You Can Add From Dashboard";
-        }
 
-        $product->update([
+        $Product->update([
             'total_price' => $data['total_price'],
         ]);
 
         return back()->with('تم الخصم بنجاح');
 
     }
-
 
 }

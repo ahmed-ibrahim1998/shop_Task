@@ -19,9 +19,7 @@ Route::group(['namespace' => 'Site'], function () {
 
     Route::get('/site', [HomeController::class, 'home']);
     Route::get('site/{id}', [HomeController::class, 'productDetails'])->name('product.details');
-    Route::post('first-product-buy', [HomeController::class, 'First_product_buy'])->name('first-product.buy');
-    Route::post('second-product-buy', [HomeController::class, 'Second_product_buy'])->name('second-product.buy');
-
+    Route::post('first-product-buy/{id}', [HomeController::class, 'First_product_buy'])->name('first-product.buy');
 
     Route::group(['middleware' => 'guest:site'], function () {
         Route::get('register_user', [\App\Http\Controllers\Site\RegisterController::class, 'getPage'])->name('register_user');
